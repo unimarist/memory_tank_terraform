@@ -1,1 +1,2 @@
-.envrc
+.terraform/plugins/darwin_amd64/lock.json
+.terraform/plugins/darwin_amd64/terraform-provider-aws_v3.37.0_x5
