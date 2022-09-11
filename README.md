@@ -1,0 +1,2 @@
+# memory_tank_terraform
+memory_tankのIaC用
