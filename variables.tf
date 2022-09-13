@@ -1,0 +1,1 @@
+variable "web_sg_22_cidr_block" {}
