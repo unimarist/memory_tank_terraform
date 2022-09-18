@@ -2,7 +2,7 @@ resource "aws_security_group" "web_sg" {
 
  vpc_id = aws_vpc.vpc.id
  tags = {
-   Name = "web-sg-MemoryTank"
+   Name = "web-sg-${var.app_name}"
  }
 
 }
@@ -55,7 +55,7 @@ resource "aws_security_group" "alb_sg" {
 
  vpc_id = aws_vpc.vpc.id
  tags = {
-   Name = "alb-sg-MemoryTank"
+   Name = "alb-sg-${var.app_name}"
  }
 
 }
@@ -97,7 +97,7 @@ resource "aws_security_group" "private_sg" {
 
  vpc_id = aws_vpc.vpc.id
  tags = {
-   Name = "private-sg-MemoryTank"
+   Name = "private-sg-${var.app_name}"
  }
 
 }
@@ -122,4 +122,15 @@ resource "aws_security_group_rule" "ingress_private_sg_3306" {
  source_security_group_id = aws_security_group.web_sg.id
  security_group_id = aws_security_group.private_sg.id
  
+}
+
+resource "aws_security_group_rule" "ingress_private_sg_22" {
+
+ type = "ingress"
+ from_port = "22"
+ to_port = "22"
+ protocol = "tcp" 
+ source_security_group_id = aws_security_group.web_sg.id
+ security_group_id = aws_security_group.private_sg.id
+
 }
