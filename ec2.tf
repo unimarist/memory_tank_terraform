@@ -1,4 +1,11 @@
+data "template_file" "web_shell" {
+
+  template = file("${path.module}/web.sh.tpl")
+
+}
+
 resource "aws_instance" "webap" {
+
   ami = data.aws_ami.amzn2.id
   instance_type = var.instance_type
   key_name = aws_key_pair.auth.id
@@ -12,17 +19,22 @@ resource "aws_instance" "webap" {
   tags = {
     Name = "EC2-${var.app_name}-WebAp"
   }
+  user_data = base64encode(data.template_file.web_shell.rendered)
+
 }
 
 resource "aws_eip" "eip_for_webap" {
+
     instance = aws_instance.webap.id
     vpc = true
     tags = {
       name = "EIP-${var.app_name}-WebAp"
     }
+
 }
 
 resource "aws_instance" "db" {
+
   ami = data.aws_ami.amzn2.id
   instance_type = var.instance_type_db
   key_name = aws_key_pair.auth_db.id
@@ -36,4 +48,5 @@ resource "aws_instance" "db" {
   tags = {
     Name = "EC2-${var.app_name}-DB"
   }
+  
 }

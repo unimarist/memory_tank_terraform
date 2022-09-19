@@ -1,5 +1,6 @@
 # common
 app_name = "MemoryTank"
+domain_name = "memory-tank.ga"
 
 # ec2
 instance_type = "t2.micro"

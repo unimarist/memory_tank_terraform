@@ -1,5 +1,6 @@
 # common
 variable "app_name" {}
+variable "domain_name" {}
 
 # sg
 variable "web_sg_22_cidr_block" {}
