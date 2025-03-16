@@ -1,2 +1,2 @@
 # memory_tank_terraform
-memory_tankのIaC用
+memory_tank用のterrraform リポジトリ
